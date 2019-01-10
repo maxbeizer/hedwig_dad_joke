@@ -1,5 +1,8 @@
 defmodule HedwigDadJoke.Icanhazdadjoke do
-  @default_user_agent "https://github.com/maxbeizer/hedwig_dad_joke"
+  @moduledoc """
+  The module to use icanhazdadjoke.com as the source of jokes.
+  """
+
   @base_url "https://icanhazdadjoke.com/"
 
   def random(client) do

@@ -5,7 +5,6 @@ defmodule HedwigDadJoke do
   use GenServer
   alias HedwigDadJoke.{
     Config,
-    Icanhazdadjoke,
     MessageFormatter
   }
 
@@ -29,8 +28,8 @@ defmodule HedwigDadJoke do
     source = Enum.random(sources)
     {:ok, reply} =
       source.client(state)
-      |> Icanhazdadjoke.random()
-      |> MessageFormatter.format()
+      |> source.random()
+      |> MessageFormatter.format(source)
 
     {:reply, reply, state}
   end
