@@ -3,6 +3,10 @@ defmodule HedwigDadJoke do
   Documentation for HedwigDadJoke.
   """
   use GenServer
+  alias HedwigDadJoke.{
+    Icanhazdadjoke,
+    MessageFormatter
+  }
 
   @name __MODULE__
 
@@ -18,17 +22,18 @@ defmodule HedwigDadJoke do
   def init(config) do
     config =
       config
-      |> Map.put_new(:client, HedwigDadJoke.Icanhazdadjoke.client(config))
+      |> Map.put_new(:client, Icanhazdadjoke.client(config))
 
     {:ok, config}
   end
 
   @impl true
   def handle_call(:random, _from, %{client: client} = state) do
-    {:ok, %{body: %{"joke" => joke}}} =
+    {:ok, reply} =
       client
-      |> HedwigDadJoke.Icanhazdadjoke.random()
+      |> Icanhazdadjoke.random()
+      |> MessageFormatter.format()
 
-    {:reply, joke, state}
+    {:reply, reply, state}
   end
 end

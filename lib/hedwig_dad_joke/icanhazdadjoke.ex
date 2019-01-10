@@ -1,5 +1,6 @@
 defmodule HedwigDadJoke.Icanhazdadjoke do
-  @default_user_agent "hedwig_dad_joke"
+  @default_user_agent "https://github.com/maxbeizer/hedwig_dad_joke"
+  @base_url "https://icanhazdadjoke.com/"
 
   def random(client) do
     Tesla.get(client, "")
@@ -7,7 +8,7 @@ defmodule HedwigDadJoke.Icanhazdadjoke do
 
   def client(config) do
     middleware = [
-      {Tesla.Middleware.BaseUrl, "https://icanhazdadjoke.com/"},
+      {Tesla.Middleware.BaseUrl, @base_url},
       Tesla.Middleware.JSON,
       {Tesla.Middleware.Headers,
        [
