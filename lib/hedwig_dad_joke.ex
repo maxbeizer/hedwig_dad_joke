@@ -4,6 +4,7 @@ defmodule HedwigDadJoke do
   """
   use GenServer
   alias HedwigDadJoke.{
+    Config,
     Icanhazdadjoke,
     MessageFormatter
   }
@@ -19,18 +20,15 @@ defmodule HedwigDadJoke do
   end
 
   @impl true
-  def init(config) do
-    config =
-      config
-      |> Map.put_new(:client, Icanhazdadjoke.client(config))
-
-    {:ok, config}
+  def init(options) do
+    {:ok, Config.new(options)}
   end
 
   @impl true
-  def handle_call(:random, _from, %{client: client} = state) do
+  def handle_call(:random, _from, %{sources: sources} = state) do
+    source = Enum.random(sources)
     {:ok, reply} =
-      client
+      source.client(state)
       |> Icanhazdadjoke.random()
       |> MessageFormatter.format()
 

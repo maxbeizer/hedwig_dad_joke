@@ -12,7 +12,7 @@ defmodule HedwigDadJoke.Icanhazdadjoke do
       Tesla.Middleware.JSON,
       {Tesla.Middleware.Headers,
        [
-         {"User-Agent", Map.get(config, :user_agent, @default_user_agent)},
+         {"User-Agent", Map.get(config, :user_agent)},
          {"Accept", "application/json"}
        ]}
     ]
