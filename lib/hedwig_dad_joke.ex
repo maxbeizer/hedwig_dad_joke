@@ -2,17 +2,33 @@ defmodule HedwigDadJoke do
   @moduledoc """
   Documentation for HedwigDadJoke.
   """
+  use GenServer
 
-  @doc """
-  Hello world.
+  @name __MODULE__
 
-  ## Examples
+  def start_link(config \\ %{}) do
+    GenServer.start_link(@name, config, name: @name)
+  end
 
-      iex> HedwigDadJoke.hello
-      :world
+  def random do
+    GenServer.call(@name, :random)
+  end
 
-  """
-  def hello do
-    :world
+  @impl true
+  def init(config) do
+    config =
+      config
+      |> Map.put_new(:client, HedwigDadJoke.Icanhazdadjoke.client())
+
+    {:ok, config}
+  end
+
+  @impl true
+  def handle_call(:random, _from, %{client: client} = state) do
+    {:ok, %{body: %{"joke" => joke}}} =
+      client
+      |> HedwigDadJoke.Icanhazdadjoke.random()
+
+    {:reply, joke, state}
   end
 end
