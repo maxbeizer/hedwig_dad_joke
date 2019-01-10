@@ -18,7 +18,7 @@ defmodule HedwigDadJoke do
   def init(config) do
     config =
       config
-      |> Map.put_new(:client, HedwigDadJoke.Icanhazdadjoke.client())
+      |> Map.put_new(:client, HedwigDadJoke.Icanhazdadjoke.client(config))
 
     {:ok, config}
   end
