@@ -34,7 +34,7 @@ defmodule HedwigDadJoke.Icanhazdadjoke do
   def format({:ok, %{status: 200, url: url, body: %{"id" => id, "joke" => joke}}}, %{
         format: :plain
       }) do
-    {:ok, joke <> "\n" <> url <> "/j/" <> id}
+    {:ok, joke <> "\n" <> url <> "j/" <> id}
   end
 
   def format({:ok, %{status: 200}}, %{format: format}),

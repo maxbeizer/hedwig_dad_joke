@@ -16,7 +16,7 @@ defmodule HedwigDadJoke.IcanhazdadjokeTest do
          %{status: 200, url: url, body: %{"id" => id, "joke" => "test joke", "status" => 200}}}
 
       {:ok, result} = Icanhazdadjoke.format(api_response, %{format: :plain})
-      assert "test joke\n#{url}/j/#{id}" == result
+      assert "test joke\n#{url}j/#{id}" == result
     end
 
     test ~S"""
