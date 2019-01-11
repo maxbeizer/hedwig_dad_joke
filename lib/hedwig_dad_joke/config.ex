@@ -4,7 +4,7 @@ defmodule HedwigDadJoke.Config do
   """
 
   defstruct user_agent: "https://github.com/maxbeizer/hedwig_dad_joke",
-            sources: [HedwigDadJoke.Icanhazdadjoke],
+            sources: [HedwigDadJoke.Icanhazdadjoke, HedwigDadJoke.WesBosDadJokes],
             format: :plain
 
   @type t :: %__MODULE__{user_agent: String.t(), sources: [module()], format: atom()}
