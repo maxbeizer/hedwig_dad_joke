@@ -2,20 +2,16 @@ defmodule HedwigDadJoke.Icanhazdadjoke do
   @moduledoc """
   The module to use icanhazdadjoke.com as the source of jokes.
   """
-  @type status :: non_neg_integer()
-  @type url :: String.t()
-  @type body :: %{id: String.t(), joke: String.t()}
-  @type api_response :: {atom(), %{status: status(), url: url(), body: body()}}
-  @type message :: {atom(), String.t()}
-
+  alias HedwigDadJoke.JokeSource
+  @behaviour JokeSource
   @base_url "https://icanhazdadjoke.com/"
 
-  @spec random(binary() | Tesla.Client.t()) :: {:error, any()} | {:ok, Tesla.Env.t()}
+  @impl JokeSource
   def random(client) do
     Tesla.get(client, "")
   end
 
-  @spec client(HedwigDadJoke.Config.t()) :: Tesla.Client.t()
+  @impl JokeSource
   def client(config) do
     middleware = [
       {Tesla.Middleware.BaseUrl, @base_url},
@@ -34,7 +30,7 @@ defmodule HedwigDadJoke.Icanhazdadjoke do
   Given an API response, format the data into a message to display the joke
   and a link for attribution.
   """
-  @spec format(api_response(), HedwigDadJoke.Config.t()) :: message()
+  @impl JokeSource
   def format({:ok, %{status: 200, url: url, body: %{"id" => id, "joke" => joke}}}, %{
         format: :plain
       }) do
