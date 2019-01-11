@@ -25,3 +25,6 @@ be found at [https://hexdocs.pm/hedwig_dad_joke](https://hexdocs.pm/hedwig_dad_j
 $ bin/lint
 
 ```
+
+## License
+[MIT](https://github.com/maxbeizer/hedwig_dad_joke/blob/master/LICENSE)
