@@ -2,4 +2,5 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-mix credo --strict
+mix credo --strict &&
+mix dialyzer
