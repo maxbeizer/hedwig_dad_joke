@@ -3,6 +3,7 @@ defmodule HedwigDadJoke do
   Documentation for HedwigDadJoke.
   """
   use GenServer
+
   alias HedwigDadJoke.{
     Config,
     MessageFormatter
@@ -26,8 +27,10 @@ defmodule HedwigDadJoke do
   @impl true
   def handle_call(:random, _from, %{sources: sources} = state) do
     source = Enum.random(sources)
+
     {:ok, reply} =
-      source.client(state)
+      state
+      |> source.client()
       |> source.random()
       |> MessageFormatter.format(source)
 

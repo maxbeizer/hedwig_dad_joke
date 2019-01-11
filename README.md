@@ -1,6 +1,6 @@
-# HedwigDadJoke
+# Hedwig Dad Joke
 
-**TODO: Add description**
+A plugin for [Hedwig](https://github.com/hedwig-im) that will make your eyes roll.
 
 ## Installation
 
@@ -19,3 +19,9 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/hedwig_dad_joke](https://hexdocs.pm/hedwig_dad_joke).
 
+
+## Lint
+```
+$ bin/lint
+
+```

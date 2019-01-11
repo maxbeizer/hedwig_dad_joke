@@ -23,7 +23,8 @@ defmodule HedwigDadJoke.MixProject do
     [
       {:tesla, "~> 1.2.0"},
       {:hackney, "~> 1.14.0"},
-      {:jason, ">= 1.0.0"}
+      {:jason, ">= 1.0.0"},
+      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false}
     ]
   end
 end
