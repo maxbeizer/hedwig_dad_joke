@@ -4,9 +4,10 @@ defmodule HedwigDadJoke.Config do
   """
 
   defstruct user_agent: "https://github.com/maxbeizer/hedwig_dad_joke",
-            sources: [HedwigDadJoke.Icanhazdadjoke]
+            sources: [HedwigDadJoke.Icanhazdadjoke],
+            format: :plain
 
-  @type t :: %__MODULE__{user_agent: String.t(), sources: [module()]}
+  @type t :: %__MODULE__{user_agent: String.t(), sources: [module()], format: atom()}
 
   @doc """
   Merge the pased in configuration with the defaults to create the Config
