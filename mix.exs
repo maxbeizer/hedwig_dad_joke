@@ -4,11 +4,20 @@ defmodule HedwigDadJoke.MixProject do
   def project do
     [
       app: :hedwig_dad_joke,
-      version: "0.1.0",
-      elixir: "~> 1.7",
+      version: "1.0.0",
+      elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       elixirc_paths: elixirc_paths(Mix.env()),
-      deps: deps()
+      deps: deps(),
+      description: "A plugin for Hedwig that will make your eyes roll",
+      package: [
+        name: "hedwig_dad_joke",
+        files: ~w(lib .formatter.exs mix.exs README* LICENSE* CHANGELOG*),
+        licenses: ["MIT"],
+        links: %{"GitHub" => "https://github.com/maxbeizer/hedwig_dad_joke"}
+      ],
+      source_url: "https://github.com/maxbeizer/hedwig_dad_joke",
+      homepage_url: "https://github.com/maxbeizer/hedwig_dad_joke"
     ]
   end
 
