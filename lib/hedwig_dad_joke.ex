@@ -4,6 +4,7 @@ defmodule HedwigDadJoke do
   variety of sources.
   """
   use GenServer
+  @behaviour JokeModule
 
   alias HedwigDadJoke.Config
 
@@ -19,8 +20,12 @@ defmodule HedwigDadJoke do
   Fetch a dadjoke from one of our sources and format it in the style detailed
   in the config.
   """
-  @spec random() :: any()
+  @impl JokeModule
   def random do
+    unless Process.whereis(@name) do
+      @name.start_link(%{})
+    end
+
     GenServer.call(@name, :random)
   end
 

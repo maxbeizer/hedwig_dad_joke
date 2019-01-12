@@ -14,7 +14,7 @@ defmodule HedwigDadJoke.Config do
   struct.
   """
   @spec new(map()) :: t()
-  def new(passed_in) do
+  def new(passed_in \\ %{}) do
     struct(__MODULE__, passed_in)
   end
 end
