@@ -1,5 +1,8 @@
 CHANGELOG
 
+### 1.1.1
+* Add @usage macro (#5)
+
 ### 1.1.0
 * Do not start gen_server outside of a supervisor (#4)
 
