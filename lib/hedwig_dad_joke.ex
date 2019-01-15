@@ -23,7 +23,7 @@ defmodule HedwigDadJoke do
   @impl JokeModule
   def random do
     unless Process.whereis(@name) do
-      @name.start_link(%{})
+      get_random()
     end
 
     GenServer.call(@name, :random)
@@ -37,7 +37,25 @@ defmodule HedwigDadJoke do
 
   @impl true
   @spec handle_call(atom(), any(), Config.t()) :: {:reply, String.t(), Config.t()}
-  def handle_call(:random, _from, %{sources: sources} = state) do
+  def handle_call(:random, _from, state) do
+    {:ok, reply} = get_random(state)
+
+    {:reply, reply, state}
+  end
+
+  # When gen_server is running, use state as config
+  defp get_random(%{sources: sources} = state) do
+    source = Enum.random(sources)
+
+    state
+    |> source.client()
+    |> source.random()
+    |> source.format(state)
+  end
+
+  # When no gen_server is running, just go get the joke
+  defp get_random do
+    %{sources: sources} = state = Config.new()
     source = Enum.random(sources)
 
     {:ok, reply} =
@@ -46,6 +64,6 @@ defmodule HedwigDadJoke do
       |> source.random()
       |> source.format(state)
 
-    {:reply, reply, state}
+    reply
   end
 end
