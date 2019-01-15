@@ -1,4 +1,4 @@
-# Hedwig Dad Joke
+# Hedwig Dad Joke [![Build Status](https://travis-ci.org/maxbeizer/hedwig_dad_joke.svg?branch=master)](https://travis-ci.org/maxbeizer/hedwig_dad_joke)
 
 A plugin for [Hedwig](https://github.com/hedwig-im) that will make your eyes roll.
 
