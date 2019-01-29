@@ -22,11 +22,11 @@ defmodule HedwigDadJoke do
   """
   @impl JokeModule
   def random do
-    unless Process.whereis(@name) do
+    if Process.whereis(@name) do
+      GenServer.call(@name, :random)
+    else
       get_random()
     end
-
-    GenServer.call(@name, :random)
   end
 
   @impl true
