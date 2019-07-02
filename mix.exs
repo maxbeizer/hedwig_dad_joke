@@ -1,10 +1,12 @@
 defmodule HedwigDadJoke.MixProject do
   use Mix.Project
 
+  @vsn "1.2.0"
+
   def project do
     [
       app: :hedwig_dad_joke,
-      version: "1.1.2",
+      version: @vsn,
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       elixirc_paths: elixirc_paths(Mix.env()),
