@@ -19,7 +19,7 @@ Add `hedwig_dad_joke` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:hedwig_dad_joke, "~> 1.1.0"}
+    {:hedwig_dad_joke, "~> 1.2.0"}
   ]
 end
 ```
